@@ -1,0 +1,4 @@
+# .gitignore in root
+node_modules/ # If node_modules is at root
+.DS_Store
+Thumbs.db

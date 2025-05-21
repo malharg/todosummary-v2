@@ -1,0 +1,288 @@
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; 
+
+
+:root {
+  
+  --background-color: #f0f2f5;
+  --text-color: #333;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --border-color: #ddd;
+  --card-background: #ffffff;
+  --delete-button-color: #dc3545;
+  --success-color: #28a745;
+  --failure-color: #dc3545;
+  --button-hover-brightness: 0.9;
+}
+
+
+body.dark-mode {
+  --background-color: #282c34;
+  --text-color: #e0e0e0;
+  --primary-color: #61dafb; 
+  --secondary-color: #999;
+  --border-color: #444;
+  --card-background: #3a3f47;
+  --delete-button-color: #ff6b6b;
+  --success-color: #4caf50;
+  --failure-color: #f44336;
+  --button-hover-brightness: 1.2;
+}
+
+/* App Container & Header */
+.app-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+body.dark-mode .app-container {
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-header h1 {
+  font-size: 2em;
+  color: var(--primary-color);
+  margin: 0;
+  display: flex; 
+  align-items: center;
+}
+
+.app-icon {
+
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+.dark-mode-toggle:hover {
+  filter: brightness(var(--button-hover-brightness));
+}
+
+/* Main Content Area */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form (Add New Todo) */
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-form input[type="text"] {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: var(--card-background); 
+  color: var(--text-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todo-form input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
+}
+body.dark-mode .todo-form input[type="text"]:focus {
+  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.25); 
+}
+
+/* Buttons General Style */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap; /* Prevent text wrapping on smaller buttons */
+}
+
+button:hover {
+  transform: translateY(-1px); /* Slight lift effect */
+  filter: brightness(var(--button-hover-brightness));
+}
+
+button:active {
+  transform: translateY(0); /* Press down effect */
+}
+
+/* Add Button */
+.todo-form button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Todo List */
+.todo-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
+}
+
+.todo-item:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+body.dark-mode .todo-item:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item span {
+  flex-grow: 1;
+  margin-right: 15px;
+  color: var(--text-color);
+}
+
+.todo-item button {
+  background-color: var(--delete-button-color);
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.9em;
+}
+
+/* Summarize Button */
+.summarize-button {
+  background-color: var(--primary-color);
+  color: white;
+  width: fit-content; /* Adjust to content size */
+  margin: 20px auto 0 auto; /* Center the button */
+  padding: 12px 25px;
+  font-weight: bold;
+}
+
+/* Summarize Button Status Feedback */
+.summarize-button.sending {
+  background-color: var(--secondary-color); /* Grey it out */
+  cursor: not-allowed;
+  animation: pulse 1s infinite alternate; /* Simple pulse effect */
+}
+
+.summarize-button.success {
+  background-color: var(--success-color); /* Green for success */
+  color: white;
+}
+
+.summarize-button.failure {
+  background-color: var(--failure-color); /* Red for failure */
+  color: white;
+}
+
+/* Optional Status Messages */
+.status-message {
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.status-message.success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+}
+
+.status-message.failure {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--failure-color);
+}
+
+/* Keyframe for pulse animation */
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .app-container {
+    margin: 20px;
+    padding: 15px;
+  }
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .todo-form {
+    flex-direction: column;
+  }
+  .todo-form input[type="text"] {
+    width: calc(100% - 30px); /* Adjust padding */
+  }
+  .todo-form button {
+    width: 100%;
+  }
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .todo-item span {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+  .summarize-button {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
