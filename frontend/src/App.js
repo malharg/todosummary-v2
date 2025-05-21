@@ -1,4 +1,3 @@
-const API_BASE = process.env.REACT_APP_API_URL;
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TodoForm from "./components/TodoForm";
@@ -6,6 +5,7 @@ import TodoList from "./components/TodoList";
 import SummaryButton from "./components/SummaryButton"; // Import the new SummaryButton component
 import "./App.css"; // Import the main CSS file
 
+const API_BASE = process.env.REACT_APP_API_URL;
 function App() {
   const [todos, setTodos] = useState([]);
 
