@@ -1,5 +1,8 @@
 # Todo Summary Assistant
 
+## Vercel
+**Link:** https://todosummary-v2-git-main-malhar-gharats-projects.vercel.app
+
 ## Project Objective
 
 This full-stack application helps users manage to-do items, summarize tasks using an LLM, and send summaries to Slack.
