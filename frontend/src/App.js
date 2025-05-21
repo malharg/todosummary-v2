@@ -1,3 +1,4 @@
+const API_BASE = process.env.REACT_APP_API_URL;
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TodoForm from "./components/TodoForm";
@@ -22,7 +23,7 @@ function App() {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/todos");
+      const res = await axios.get(`${API_BASE}/todos`);
       setTodos(res.data);
     } catch (error) {
       console.error("Error fetching todos:", error);
@@ -36,7 +37,7 @@ function App() {
 
   const addTodo = async (title) => {
     try {
-      const res = await axios.post("http://localhost:5000/todos", { title });
+      const res = await axios.post(`${API_BASE}/todos`, { title });
       setTodos([res.data, ...todos]);
     } catch (error) {
       console.error("Error adding todo:", error);
@@ -45,7 +46,7 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/todos/${id}`);
+      await axios.delete(`${API_BASE}/todos/${id}`);
       setTodos(todos.filter((todo) => todo.id !== id));
     } catch (error) {
       console.error("Error deleting todo:", error);
@@ -55,7 +56,7 @@ function App() {
   const summarizeTodos = async () => {
     setSummaryStatus("sending"); // Set status to sending immediately
     try {
-      await axios.post("http://localhost:5000/todos/summarize"); // Updated endpoint
+      await axios.post(`${API_BASE}/todos/summarize`); // Updated endpoint
       setSummaryStatus("success"); // Set status to success on successful response
     } catch (error) {
       console.error("Error sending summary:", error);
